@@ -1,75 +1,57 @@
-# Nuxt 3 Minimal Starter
+# Book Wander
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## REQUIRED TECH STACK
 
-## Setup
+- Vue 3 with composition API
+- Nuxt3
+- Typescript
+- Tailwind
 
-Make sure to install the dependencies:
+## PROJECT DESCRIPTION
 
-```bash
-# npm
-npm install
+We need to build a travels and bookings management system consisting of 2 pages:
 
-# pnpm
-pnpm install
+- one to manage travel
+- one to manage booking.
 
-# yarn
-yarn install
+### Travel
 
-# bun
-bun install
-```
+1. The travels should have some basic informations like:
 
-## Development Server
+   - name of the travel,
+   - dates of departure and return,
+   - A picture
+   - Description of the tour,
+   - Price for a single person and an average user rating.
 
-Start the development server on `http://localhost:3000`:
+2. Travels should be listed in a dedicated page with a table and some basic filters.
 
-```bash
-# npm
-npm run dev
+3. The user should be able to:
+   - Use a form to add a new travel
+   - Edit an existing travel
+   - Delete a travel
 
-# pnpm
-pnpm run dev
+### The booking
+1. The bookings should hold those info:
+    - The related travel
+    - Customer infos
+    - Payment type and eventual internal notes.
 
-# yarn
-yarn dev
+2. Bookings should be listed in a dedicated page with a table
+3. A booking can be created with a dedicated multi-step form (wizard):
+    - first step: search and select the related travel
+    - second step: fill the customer info in a dedicated form (name, email, phone number, age, gender)
+    - third step: select the payment type (Credit transfer, Paypal, Revolut) and optionally add some notes
 
-# bun
-bun run dev
-```
+# Notes
+The backend/API part can be mocked (no database, optional validation, just mocked data) and implemented in the way the candidate prefers, for example with nuxt server routes or a dedicated simple server.
 
-## Production
+For every other detail not explicitly written in this docs, the candidate can independently design and build the way they prefer.
 
-Build the application for production:
+Kindly, once completed, return everything to us on GitHub to monkeys@weroad.it;
 
-```bash
-# npm
-npm run build
+Let us know if everything is clear, and feel free to contact us for any questions.
 
-# pnpm
-pnpm run build
+Kindly, once completed, send us a reply message here so that everything is tracked.
 
-# yarn
-yarn build
-
-# bun
-bun run build
-```
-
-Locally preview production build:
-
-```bash
-# npm
-npm run preview
-
-# pnpm
-pnpm run preview
-
-# yarn
-yarn preview
-
-# bun
-bun run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+Deadline: seven days from today (but let us know if you need a few days more).
