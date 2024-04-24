@@ -6,6 +6,7 @@
     "build": "nuxt build",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
+    "generate:stubs": "node server/stubs/travels.js",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
