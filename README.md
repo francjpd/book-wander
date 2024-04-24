@@ -18,11 +18,13 @@ We need to build a travels and bookings management system consisting of 2 pages:
 
 1. The travels should have some basic informations like:
 
-   - name of the travel,
-   - dates of departure and return,
+   - Name of the travel,
+   - Departure date
+   - Return date,
    - A picture
    - Description of the tour,
-   - Price for a single person and an average user rating.
+   - Price for a single person
+   - verage user rating.
 
 2. Travels should be listed in a dedicated page with a table and some basic filters.
 
@@ -35,7 +37,8 @@ We need to build a travels and bookings management system consisting of 2 pages:
 1. The bookings should hold those info:
     - The related travel
     - Customer infos
-    - Payment type and eventual internal notes.
+    - Payment type
+    - eventual internal notes.
 
 2. Bookings should be listed in a dedicated page with a table
 3. A booking can be created with a dedicated multi-step form (wizard):
