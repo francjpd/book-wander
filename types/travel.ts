@@ -1,5 +1,5 @@
 export type Travel = {
-    returnDate: Date;
+    continent: 'Asia' | 'Africa' | 'Europe' | 'North America' | 'South America' | 'Australia' | 'Antartica'
     departure: Date;
     description: string;
     id: string;
@@ -7,4 +7,5 @@ export type Travel = {
     picture: string;
     price: number;
     rating?: number;
+    returnDate: Date;
 }

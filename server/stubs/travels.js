@@ -1413,7 +1413,7 @@ const travels = [
         ]
     }
 ]
-    .map(({ name, image: picture, description, }) => {
+    .map(({ name, image: picture, description, continent }) => {
 
         const someDaysFromNow = new Date('2024-04-20T23:59:59Z');
         const addTwoDays = addDays(2);
@@ -1435,6 +1435,7 @@ const travels = [
         }
 
         return ({
+            continent,
             returnDate,
             departure,
             description,
