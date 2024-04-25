@@ -8,7 +8,7 @@
                         <NuxtLink :to="'/booking'" class=""> Booking</NuxtLink>
                     </li>
                     <li>
-                        <NuxtLink :to="'/travel'" class=""> Travel</NuxtLink>
+                        <NuxtLink :to="'/'" class=""> Travel</NuxtLink>
                     </li>
                 </ul>
             </nav>

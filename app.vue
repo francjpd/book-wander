@@ -1,5 +1,5 @@
 <template>
-  <div class="container w-auto m-auto ">
+  <div class="md:w-auto sm:w-full  sm:m-0 md:md-auto">
     <NuxtLoadingIndicator />
     <NuxtLayout>
       <NuxtPage />
