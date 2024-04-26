@@ -3,6 +3,7 @@ import type { Travel } from '~/types/travel';
 import { columns } from '~/components/travels/columns';
 import debounce from 'debounce'
 
+const API = '/api/travels'
 const route = useRoute()
 const router = useRouter();
 const dataTableColumns = columns || []
@@ -20,7 +21,7 @@ const getTravels = async () => {
         params.append('search', search.value);
     }
 
-    const api = `/api/travels${params.toString() ? `?${params}` : ''}`;
+    const api = `${API}${params.toString() ? `?${params}` : ''}`;
 
     return await useFetch<Travel[]>(api)
 }
@@ -58,19 +59,35 @@ const handleSearch = debounce(async (ev: InputEvent) => {
     const { data } = await getTravels();
     travels.value = data!.value || [];
 }, 200)
+
+const handleSubmit = async (values: {
+    departure: string;
+    description: string;
+    name: string;
+    picture: string;
+    price: number;
+    returnDate: string;
+}) => {
+    const response = await $fetch(API, {
+        method: 'POST',
+        body: { ...values }
+    });
+
+    travels.value = response.travels as unknown as Travel[];
+
+}
 </script>
 
 <template>
     <div class="flex flex-col gap-8">
         <h2 class="text-4xl font-extrabold font-sans text-lightning-yellow-600"> Search for a destiny!</h2>
         <div class="w-full items-center grid grid-cols-6 gap-4 sticky top-0 bg-scooter-50 z-10 p-2 ">
-
-            <Input class=" col-span-6 md:col-span-4" placeholder="Search by Destiny or country..." v-model="search"
-                @input="handleSearch" />
-            <TravelsFilter class="col-start-2 col-span-4 md:col-span-1 w-full" :value="continent"
+            <Input class=" col-span-6 md:col-span-3 lg:col-span-3" placeholder="Search by Destiny or country..."
+                v-model="search" @input="handleSearch" />
+            <TravelsFilter class="col-start-2 col-span-4 md:col-span-2 lg:col-span-2 w-full" :value="continent"
                 placeholder="Filter by Continent" :items="contintents" @select="handleSelect" />
             <div class="col-start-2 col-span-4 md:col-span-1">
-                <TravelsDrawer></TravelsDrawer>
+                <TravelsForm @submit="handleSubmit"></TravelsForm>
             </div>
         </div>
 
