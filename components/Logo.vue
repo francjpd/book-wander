@@ -2,14 +2,14 @@
 
 </script>
 <template>
-    <div>
+    <div v-bind="$attrs">
         <div class="inline-flex">
-            <img src="/logo.svg" class="h-14" />
-            <div class="flex flex-col">
-                <div class="font-semibold text-fuzzy-wuzzy-brown-600 text-3xl m-0">
+            <img src="/logo.svg" class="h-11" alt="Logo" />
+            <div class="flex flex-col ml-2  items-start ">
+                <div class="font-extrabold text-fuzzy-wuzzy-brown-600 text-2xl m-0 leading-5 tracking-widest">
                     Book
                 </div>
-                <div class="dark:text-lightning-yellow-500 text-2xl leading-3 m-0">
+                <div class="text-lightning-yellow-600 text-2xl leading-3 m-0 font-light">
                     wander
                 </div>
             </div>
