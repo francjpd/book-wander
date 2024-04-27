@@ -1,160 +1,126 @@
 <script setup lang="ts">
-import { createReusableTemplate, useMediaQuery } from '@vueuse/core';
-import { travelSchema, type Travel } from '~/types/travel'
+import { type Travel } from '~/types/travel'
+import { travelSchema } from '~/lib/travel'
 import { useForm } from 'vee-validate'
 
 const form = useForm({
     validationSchema: travelSchema,
 })
 
-const props = withDefaults(defineProps<{ travel: Travel }>(), {
-    travel: () => ({
-        continent: 'Europe',
-        departure: new Date(),
-        description: 'asd',
-        name: '',
-        picture: '',
-        price: 0,
-        returnDate: new Date()
-    })
-})
+const props = defineProps<{ travel: Travel }>()
 
-const [UseTemplate, GridForm] = createReusableTemplate()
+const internalTravel: Ref<Travel> = ref<Travel>(props.travel)
+
+watch(() => props.travel, (value) => {
+    console.log(value)
+    if (value) internalTravel.value = value
+}, { immediate: true })
 
 const emits = defineEmits<{
-    (e: 'submit', payload: {
-        departure: string;
-        description: string;
-        name: string;
-        picture: string;
-        price: number;
-        returnDate: string;
-    }): void
+    (e: 'submit', payload: Travel): void
 }>()
-
-const isDesktop = useMediaQuery('(min-width: 768px)')
-
-const isOpen = ref(false)
 
 
 const onSubmit = form.handleSubmit((values) => {
-    emits('submit', values)
+    const travel: Travel = { ...values };
+    if (internalTravel.value.id) travel.id = internalTravel.value.id
+    emits('submit', travel)
 })
 </script>
 
 <template>
     <div>
-
-        <UseTemplate>
-            <div class="flex flex-col items-center w-full">
-                <form @submit="onSubmit" class="flex flex-col w-80  gap-2">
-                    <FormField v-slot="{ componentField }" name="continent">
-                        <FormItem>
-                            <FormControl>
-                                <SelectContinent :value="props.travel.continent" v-bind="componentField" />
-                            </FormControl>
-                        </FormItem>
+        <div class="flex flex-col items-center w-full">
+            <form @submit="onSubmit" class="flex flex-col w-80  gap-2 text-xs">
+                <FormField v-slot="{ componentField }" :value="internalTravel.name" name="name">
+                    <FormItem>
+                        <FormLabel>Name</FormLabel>
+                        <FormControl>
+                            <Input type="text" placeholder="Destiny name" v-bind="componentField" />
+                        </FormControl>
                         <FormMessage />
-                    </FormField>
+                    </FormItem>
+                </FormField>
+                <FormField v-slot="{ componentField }" :value="internalTravel.continent" name="continent">
+                    <FormItem>
+                        <FormLabel>Continent</FormLabel>
+                        <FormControl>
+                            <SelectContinent v-bind="componentField" />
+                        </FormControl>
+                    </FormItem>
+                    <FormMessage />
+                </FormField>
 
-                    <FormField v-slot="{ componentField }" name="departure">
+                <div class="inline-flex justify-between">
+                    <FormField v-slot="{ componentField }" :value="internalTravel.departure" name="departure">
                         <FormItem>
+                            <FormLabel>Departure</FormLabel>
                             <FormControl>
-                                <Input type="date" :value="props.travel.departure"  placeholder="Departure" v-bind="componentField" />
+                                <Input type="date" placeholder="Departure" v-bind="componentField" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     </FormField>
 
-
-                    <FormField v-slot="{ componentField }" name="description">
+                    <FormField v-slot="{ componentField }" :value="internalTravel.returnDate" name="returnDate">
                         <FormItem>
+                            <FormLabel>Return</FormLabel>
                             <FormControl>
-                                <Textarea :value="props.travel.description" type="text" placeholder="Description"
-                                    v-bind="componentField" />
+                                <Input type="date" placeholder="Return Date" v-bind="componentField" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     </FormField>
+                </div>
+                <FormField v-slot="{ componentField }" :value="internalTravel.description" name="description">
+                    <FormItem>
+                        <FormLabel>Description</FormLabel>
+                        <FormControl>
+                            <Textarea type="text" placeholder="Description" v-bind="componentField" />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                </FormField>
 
-                    <FormField v-slot="{ componentField }" name="name">
+
+
+                <FormField v-slot="{ componentField }" :value="internalTravel.picture" name="picture">
+                    <FormItem>
+                        <FormLabel>Picture</FormLabel>
+                        <FormControl>
+                            <Input type="text" placeholder="Picture" v-bind="componentField" />
+                        </FormControl>
+                        <FormMessage />
+                    </FormItem>
+                </FormField>
+
+                <div class="inline-flex justify-between">
+                    <FormField v-slot="{ componentField }" :value="internalTravel.price" name="price">
                         <FormItem>
+                            <FormLabel>Price</FormLabel>
                             <FormControl>
-                                <Input type="text" :value="props.travel.name"   placeholder="Destiny name" v-bind="componentField" />
+                                <div class="relative items-center">
+                                    <Input type="number" placeholder="Price" v-bind="componentField" />
+                                    <span class="absolute end-4 inset-y-0 flex items-center justify-center">
+                                        <img src="/eur.svg" alt="Eur">
+                                    </span>
+                                </div>
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     </FormField>
-
-                    <FormField v-slot="{ componentField }" name="picture">
+                    <FormField v-slot="{ componentField }" :value="internalTravel.rating" name="rating">
                         <FormItem>
+                            <FormLabel>Rating</FormLabel>
                             <FormControl>
-                                <Input type="text" :value="props.travel.picture"   placeholder="Picture" v-bind="componentField" />
+                                <Input type="text" placeholder="Rating" v-bind="componentField" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     </FormField>
-
-                    <FormField v-slot="{ componentField }" name="price">
-                        <FormItem>
-                            <FormControl>
-                                <Input type="number" :value="props.travel.price"   placeholder="Price" v-bind="componentField" />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    </FormField>
-
-                    <FormField v-slot="{ componentField }" name="returnDate">
-                        <FormItem>
-                            <FormControl>
-                                <Input type="date" :value="props.travel.returnDate"   placeholder="Return Date" v-bind="componentField" />
-                            </FormControl>
-                            <FormMessage />
-                        </FormItem>
-                    </FormField>
-                    <Button class="w-80 bg-scooter-400 hover:bg-scooter-600" type="submit">Submit</Button>
-                </form>
-
-            </div>
-
-
-        </UseTemplate>
-
-
-        <Dialog v-if="isDesktop" v-model:open="isOpen">
-            <DialogTrigger as-child>
-                <Button class="text-gray-900 font-semibold bg-lightning-yellow-500 hover:bg-lightning-yellow-600">
-                    Add a Travel
-                </Button>
-            </DialogTrigger>
-            <DialogContent class="sm:max-w-[425px]">
-                <DialogHeader>
-                    <DialogTitle>Add a travel</DialogTitle>
-                </DialogHeader>
-                <GridForm />
-            </DialogContent>
-        </Dialog>
-
-        <Drawer v-else v-model:open="isOpen">
-            <DrawerTrigger as-child>
-                <Button class="text-gray-900 font-semibold bg-lightning-yellow-500 hover:bg-lightning-yellow-600">
-                    Add a Travel
-                </Button>
-            </DrawerTrigger>
-            <DrawerContent>
-                <DrawerHeader class="text-left">
-                    <DrawerTitle>Add a Travel</DrawerTitle>
-                </DrawerHeader>
-                <GridForm />
-                <DrawerFooter class="pt-2">
-                    <DrawerClose as-child>
-                        <Button variant="outline">
-                            Cancel
-                        </Button>
-                    </DrawerClose>
-                </DrawerFooter>
-            </DrawerContent>
-        </Drawer>
-
+                </div>
+                <Button class="w-80 bg-scooter-400 hover:bg-scooter-600" type="submit">Submit</Button>
+            </form>
+        </div>
     </div>
 </template>

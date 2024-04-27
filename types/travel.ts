@@ -1,6 +1,3 @@
-import { z } from 'zod';
-import { toTypedSchema } from '@vee-validate/zod'
-
 export type Travel = {
     continent: 'Asia' | 'Africa' | 'Europe' | 'North America' | 'South America' | 'Australia' | 'Antartica'
     departure: Date;
@@ -12,13 +9,3 @@ export type Travel = {
     rating?: number;
     returnDate: Date;
 }
-
-
-export const travelSchema = toTypedSchema(z.object({
-    departure: z.coerce.date().transform((date) => date.toISOString()),
-    description: z.string(),
-    name: z.string(),
-    picture: z.string(),
-    price: z.number(),
-    returnDate: z.coerce.date().transform((date) => date.toISOString()),
-}));

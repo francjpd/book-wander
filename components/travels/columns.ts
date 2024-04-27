@@ -3,8 +3,8 @@ import type { Travel } from '~/types/travel'
 import type { ColumnDef } from '@tanstack/vue-table'
 import DataTableDestiny from './DataTableDestiny.vue'
 import DataTableDate from './DataTableDate.vue'
-import Button from '../ui/button/Button.vue'
 import DataTableImage from './DataTableImage.vue'
+import DataTableRating from './DataTableRating.vue'
 
 
 export const columns: ColumnDef<Travel>[] = [
@@ -28,16 +28,16 @@ export const columns: ColumnDef<Travel>[] = [
             })
         },
     },
-    // {
-    //     accessorKey: 'picture',
-    //     header: () => '',
-    //     cell: ({ row }) => {
-    //         const travel = row.original
-    //         return h(DataTableImage, {
-    //             travel
-    //         })
-    //     },
-    // },
+    {
+        accessorKey: 'picture',
+        header: () => '',
+        cell: ({ row }) => {
+            const travel = row.original
+            return h(DataTableImage, {
+                travel
+            })
+        },
+    },
     {
         accessorKey: 'price',
         header: () => 'PRICE',
@@ -45,13 +45,10 @@ export const columns: ColumnDef<Travel>[] = [
             return h('div', { class: 'text-gray-800' }, `${row.getValue('price')} eur`)
         },
     },
-
     {
-        header: () => '',
-        accessorKey: 'details',
-        cell: ({ row }) => {
-            return h(Button, { class: "bg-fuzzy-wuzzy-brown-600 hover:bg-fuzzy-wuzzy-brown-800 cursor-pointer text-white" }, 'More details')
-        },
-    },
+        accessorKey: 'rating',
+        header: () => 'RATING',
+        cell: ({ row }) => h(DataTableRating, { rating: Number(row.getValue('rating')) })
+    }
 
 ]

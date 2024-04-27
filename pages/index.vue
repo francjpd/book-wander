@@ -2,13 +2,18 @@
 import type { Travel } from '~/types/travel';
 import { columns } from '~/components/travels/columns';
 import debounce from 'debounce'
+import { newTravel } from '~/lib/travel';
 
 const API = '/api/travels'
+
 const route = useRoute()
 const router = useRouter();
 const dataTableColumns = columns || []
 const continent = ref(route.query.continent as string || 'all')
 const search = ref<string>(route.query.search as string || '')
+const selected = ref();
+const isOpen = ref<boolean>(false)
+const isEditing = ref<boolean>(false)
 
 const getTravels = async () => {
     const params = new URLSearchParams();
@@ -35,16 +40,6 @@ const travelsByDate = computed(() => travels.value.length ? travels.value?.sort(
     return 0
 }) : [])
 
-const contintents = [
-    { value: 'all', label: 'Filter by Continent' },
-    { value: 'Asia', label: 'Asia' },
-    { value: 'Africa', label: 'Africa' },
-    { value: 'Europe', label: 'Europe' },
-    { value: 'North America', label: 'North America' },
-    { value: 'South America', label: 'South America' },
-    { value: 'Australia', label: 'Australia' },
-    { value: 'Antartica', label: 'Antartica' },
-]
 
 const handleSelect = async (ev: string) => {
     continent.value = ev;
@@ -60,38 +55,63 @@ const handleSearch = debounce(async (ev: InputEvent) => {
     travels.value = data!.value || [];
 }, 200)
 
-const handleSubmit = async (values: {
-    departure: string;
-    description: string;
-    name: string;
-    picture: string;
-    price: number;
-    returnDate: string;
-}) => {
-    const response = await $fetch(API, {
-        method: 'POST',
+const handleSubmit = async (values: Travel) => {
+    let endpoint = API;
+    if (isEditing.value && values.id) endpoint = endpoint.concat(`/${values.id}`)
+
+    const response = await $fetch(endpoint, {
+        method: isEditing.value ? 'PUT' : 'POST',
         body: { ...values }
     });
 
-    travels.value = response.travels as unknown as Travel[];
+    isOpen.value = false;
+    const { data } = await getTravels()
+    travels.value = data!.value || [];
 
+}
+
+const handleAddTravel = () => {
+    selected.value = newTravel()
+    isOpen.value = true
+    isEditing.value = false
+}
+
+const handleEditTravel = (travel: Travel) => {
+    selected.value = travel
+    isOpen.value = true;
+    isEditing.value = true;
+}
+
+const handleDeleteTravel = async ({ id }: Travel) => {
+    await $fetch(`${API}/${id}`, {
+        method: 'DELETE'
+    });
+    const { data } = await getTravels()
+    travels.value = data!.value || [];
 }
 </script>
 
 <template>
     <div class="flex flex-col gap-8">
-        <h2 class="text-4xl font-extrabold font-sans text-lightning-yellow-600"> Search for a destiny!</h2>
-        <div class="w-full items-center grid grid-cols-6 gap-4 sticky top-0 bg-scooter-50 z-10 p-2 ">
+        <div
+            class="w-full items-center grid grid-cols-6 gap-4 bg-scooter-200  backdrop-blur-xl  bg-opacity-20 sticky top-[82px] z-10 p-2 ">
             <Input class=" col-span-6 md:col-span-3 lg:col-span-3" placeholder="Search by Destiny or country..."
                 v-model="search" @input="handleSearch" />
-            <TravelsFilter class="col-start-2 col-span-4 md:col-span-2 lg:col-span-2 w-full" :value="continent"
-                placeholder="Filter by Continent" :items="contintents" @select="handleSelect" />
-            <div class="col-start-2 col-span-4 md:col-span-1">
-                <TravelsForm @submit="handleSubmit"></TravelsForm>
-            </div>
+            <TravelsFilterByContinent class="col-span-3 md:col-span-2 lg:col-span-2 w-full" :value="continent"
+                @select="handleSelect" />
+            <Button @click="handleAddTravel"
+                class="col-span-3 md:col-span-1 text-gray-900 font-semibold bg-lightning-yellow-500 hover:bg-lightning-yellow-600">
+                Add a Travel
+            </Button>
+            <Modal v-model="isOpen" title="Add a travel">
+                <TravelsForm :travel="selected" @submit="handleSubmit">
+                </TravelsForm>
+            </Modal>
+
         </div>
 
-        <TravelsDataTable :columns="dataTableColumns" :data="travelsByDate" />
+        <TravelsDataTable :columns="dataTableColumns" :data="travelsByDate" @delete="handleDeleteTravel"
+            @edit="handleEditTravel" />
     </div>
 
 </template>

@@ -1,8 +1,15 @@
+<script setup lang="ts">
+import { ConfigProvider } from 'radix-vue'
+const useIdFunction = () => useId()
+</script>
 <template>
-  <div class="md:w-auto sm:w-full  sm:m-0 md:md-auto">
+  <div class="md:w-auto sm:w-full sm:m-0 md:md-auto">
     <NuxtLoadingIndicator />
-    <NuxtLayout>
-      <NuxtPage />
-    </NuxtLayout>
+
+    <ConfigProvider :use-id="useIdFunction">
+      <NuxtLayout>
+        <NuxtPage />
+      </NuxtLayout>
+    </ConfigProvider>
   </div>
 </template>

@@ -4,6 +4,8 @@ import { useForwardPropsEmits, type SelectRootProps, type SelectRootEmits } from
 const props = defineProps<SelectRootProps>()
 const emits = defineEmits<SelectRootEmits>()
 const forwarded = useForwardPropsEmits(props, emits)
+
+const continents = ['Asia', 'Africa', 'Europe', 'North America', 'South America', 'Australia', 'Antartica']
 </script>
 
 <template>
@@ -13,28 +15,11 @@ const forwarded = useForwardPropsEmits(props, emits)
         </SelectTrigger>
         <SelectContent>
             <SelectGroup>
-                <SelectLabel>Continents</SelectLabel>
-                <SelectItem value="Asia">
-                    Asia
-                </SelectItem>
-                <SelectItem value="Africa">
-                    Africa
-                </SelectItem>
-                <SelectItem value="Europe">
-                    Europe
-                </SelectItem>
-                <SelectItem value="North America">
-                    North America
-                </SelectItem>
-                <SelectItem value="South America">
-                    South America
-                </SelectItem>
-                <SelectItem value="Austraila">
-                    Austraila
-                </SelectItem>
-                <SelectItem value="Antartica">
-                    Antartica
-                </SelectItem>
+                <template v-for="continent in continents">
+                    <SelectItem :value="continent">
+                        {{ continent }}
+                    </SelectItem>
+                </template>
             </SelectGroup>
         </SelectContent>
     </Select>

@@ -16,7 +16,7 @@ const monthFormat = formatWithOptions({ locale: enUS }, 'MMM')
     <div>
         <div class="flex flex-col items-center">
             <p class="text-4xl text-scooter-400 font-bold">{{ dayFormat(props.travel.departure) }}</p>
-            <p class="text-fuzzy-wuzzy-brown-400 font-semibold">{{ monthFormat(props.travel.departure).toUpperCase() }}</p>
+            <p class="text-fuzzy-wuzzy-brown-400 font-semibold tracking-widest">{{ monthFormat(props.travel.departure).toUpperCase() }}</p>
 
 
         </div>
