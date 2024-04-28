@@ -1,3 +1,14 @@
+<script setup lang="ts">
+import type { Booking } from '~/types/booking';
+
+const bookings = ref<Booking[]>([]);
+
+
+const { data } = await useFetch<Booking[]>('/api/booking');
+bookings.value = data!.value || [];
+
+
+</script>
 <template>
-    <h1>Booking</h1>
+    <BookingList :items="bookings" />
 </template>

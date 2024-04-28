@@ -13,7 +13,6 @@ const props = defineProps<{ travel: Travel }>()
 const internalTravel: Ref<Travel> = ref<Travel>(props.travel)
 
 watch(() => props.travel, (value) => {
-    console.log(value)
     if (value) internalTravel.value = value
 }, { immediate: true })
 
@@ -23,7 +22,7 @@ const emits = defineEmits<{
 
 
 const onSubmit = form.handleSubmit((values) => {
-    const travel: Travel = { ...values };
+    const travel: Travel = { ...values } as unknown as Travel;
     if (internalTravel.value.id) travel.id = internalTravel.value.id
     emits('submit', travel)
 })
@@ -73,7 +72,7 @@ const formatDate = (date: Date) => {
                         <FormItem>
                             <FormLabel>Return</FormLabel>
                             <FormControl>
-                                <Input type="datetime"  placeholder="Return Date" v-bind="componentField" />
+                                <Input type="datetime" placeholder="Return Date" v-bind="componentField" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>

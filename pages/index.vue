@@ -59,7 +59,7 @@ const handleSubmit = async (values: Travel) => {
     let endpoint = API;
     if (isEditing.value && values.id) endpoint = endpoint.concat(`/${values.id}`)
 
-    const response = await $fetch(endpoint, {
+    await $fetch(endpoint, {
         method: isEditing.value ? 'PUT' : 'POST',
         body: { ...values }
     });
