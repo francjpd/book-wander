@@ -2,6 +2,7 @@
 import { type Travel } from '~/types/travel'
 import { travelSchema } from '~/lib/travel'
 import { useForm } from 'vee-validate'
+import { format } from 'date-fns';
 
 const form = useForm({
     validationSchema: travelSchema,
@@ -26,6 +27,10 @@ const onSubmit = form.handleSubmit((values) => {
     if (internalTravel.value.id) travel.id = internalTravel.value.id
     emits('submit', travel)
 })
+
+const formatDate = (date: Date) => {
+    return format(date, 'dd/MM/yyyy')
+}
 </script>
 
 <template>
@@ -52,21 +57,23 @@ const onSubmit = form.handleSubmit((values) => {
                 </FormField>
 
                 <div class="inline-flex justify-between">
-                    <FormField v-slot="{ componentField }" :value="internalTravel.departure" name="departure">
+                    <FormField v-slot="{ componentField }" :value="formatDate(internalTravel.departure)"
+                        name="departure">
                         <FormItem>
                             <FormLabel>Departure</FormLabel>
                             <FormControl>
-                                <Input type="date" placeholder="Departure" v-bind="componentField" />
+                                <Input type="datetime" placeholder="Departure" v-bind="componentField" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
                     </FormField>
 
-                    <FormField v-slot="{ componentField }" :value="internalTravel.returnDate" name="returnDate">
+                    <FormField v-slot="{ componentField }" :value="formatDate(internalTravel.returnDate)"
+                        name="returnDate">
                         <FormItem>
                             <FormLabel>Return</FormLabel>
                             <FormControl>
-                                <Input type="date" placeholder="Return Date" v-bind="componentField" />
+                                <Input type="datetime"  placeholder="Return Date" v-bind="componentField" />
                             </FormControl>
                             <FormMessage />
                         </FormItem>
