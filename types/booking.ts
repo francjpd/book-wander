@@ -1,10 +1,10 @@
 import type { Customer } from "./customer";
+import type { Travel } from "./travel";
 
-export type booking = {
+export type Booking = {
     customer?: Customer;
-    customerId: string;
     id: string;
     notes: string
     paymentType: 'Credit' | 'Transfer' | 'Paypal' | 'Revolut';
-    travelId: string;
+    travel: Travel;
 }
