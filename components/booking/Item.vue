@@ -8,14 +8,14 @@ const props = defineProps<{ booking: Booking, travel: Travel }>();
 
 <template>
     <div class="border rounded-sm items-center p-4">
-        <h3 class="text-xl font-light text-scooter-600 px-8">Travel information</h3>
+        <h3 class="text-xl font-light text-scooter-600 px-2 md:px-8">Travel information</h3>
         <BookingTravelInfo :travel="props.travel" />
         <div class="border-t border-gray-300 my-4" />
-        <h3 class="text-xl font-light text-scooter-600 px-8">Customer information</h3>
+        <h3 class="text-xl font-light text-scooter-600 px-2 md:px-8">Customer information</h3>
         <CustomerInfo :customer="props.booking.customer as Customer" />
         <div class="border-t border-gray-300 my-4" />
-        <h3 class="text-xl font-light text-scooter-600 px-8">Notes</h3>
-        <div class="px-8">
+        <h3 class="text-xl font-light text-scooter-600 px-2 md:px-8">Notes</h3>
+        <div class="px-2 md:px-8">
             <p class="text-lightning-yellow-700 font-medium">{{ booking.notes }}</p>
         </div>
     </div>

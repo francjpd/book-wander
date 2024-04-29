@@ -6,49 +6,51 @@ import DataTableDate from './DataTableDate.vue'
 import DataTableImage from './DataTableImage.vue'
 import DataTableRating from './DataTableRating.vue'
 
-
 export const columns: ColumnDef<Travel>[] = [
     {
         accessorKey: 'DEPARTURE',
-        header: () => h('div', { class: 'text-center' }, 'DEPARTURE'),
+        header: () => h('div', { class: 'text-center text-uppercase w-12 sm:w-auto' }, 'DATE'),
         cell: ({ row }) => {
             const travel = row.original
             return h(DataTableDate, {
+                class: 'sm:w-auto',
                 travel
             })
         },
     },
     {
         accessorKey: 'name',
-        header: () => 'DESTINY',
+        header: () => h('div', { class: 'w-14 sm:w-auto sm:h-auto' }, 'DESTINY'),
         cell: ({ row }) => {
             const travel = row.original
             return h(DataTableDestiny, {
-                travel
+                travel,
+                class: 'w-24     md:w-auto'
             })
         },
     },
     {
         accessorKey: 'picture',
-        header: () => '',
+        header: () => h('div', { class: 'p-0 m-0 invisible md:visible  w-0 h-0  sm:w-auto sm:h-auto' }, ''),
         cell: ({ row }) => {
             const travel = row.original
             return h(DataTableImage, {
+                class: 'invisible w-0 md:visible  sm:w-auto',
                 travel
             })
         },
     },
     {
         accessorKey: 'price',
-        header: () => 'PRICE',
+        header: () => h('div', { class: 'sm:w-4 sm:w-auto' }, 'PRICE'),
         cell: ({ row }) => {
-            return h('div', { class: 'text-gray-800' }, `${row.getValue('price')} eur`)
+            return h('div', { class: 'text-gray-800 w-4 text-center' }, `${row.getValue('price')} eur`)
         },
     },
     {
         accessorKey: 'rating',
-        header: () => 'RATING',
-        cell: ({ row }) => h(DataTableRating, { rating: Number(row.getValue('rating')) })
+        header: () => h('div', { class: 'invisible md:visible  w-4 sm:w-auto' }, 'RATING'),
+        cell: ({ row }) => h(DataTableRating, { class: 'w-4', rating: Number(row.getValue('rating')) })
     }
 
 ]

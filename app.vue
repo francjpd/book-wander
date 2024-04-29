@@ -3,7 +3,7 @@ import { ConfigProvider } from 'radix-vue'
 const useIdFunction = () => useId()
 </script>
 <template>
-  <div class="md:w-auto sm:w-full sm:m-0 md:md-auto">
+  <div class="md:w-auto sm:w-full sm:m-0 m-auto">
     <NuxtLoadingIndicator />
 
     <ConfigProvider :use-id="useIdFunction">

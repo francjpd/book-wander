@@ -10,8 +10,8 @@ const formatDate = (date: Date) => {
 </script>
 
 <template>
-  <div class="grid grid-cols-2 gap-4 w-full sm:justify-items-center md:justify-items-start px-8">
-    <div class="sm:col-span-2 md:col-span-1 flex flex-col items-center h-36 w-56">
+  <div class="grid grid-cols-2 gap-4 w-full sm:justify-items-center md:justify-items-start px-2 md:px-8">
+    <div class="col-span-2 md:col-span-1 flex flex-col items-center h-36 w-56">
       <img :src="props.travel.picture" class="object-cover h-full w-12/12 rounded-md" alt="Destiny's picture">
     </div>
 
@@ -22,12 +22,15 @@ const formatDate = (date: Date) => {
         <p class="">{{ props.travel.price }}</p>
         <img src="/eur.svg" alt="Eur">
       </div>
-      <div class="inline-flex gap-4">
-
-        <p class="text-gray-500">Departure: </p>
-        <span>{{ formatDate(props.travel.departure) }}</span>
-        <p class="text-gray-500">Return </p>
-        <span>{{ formatDate(props.travel.departure) }}</span>
+      <div class="flex flex-col md:flex-row gap-x-4">
+        <div class="inline-flex gap-x-2">
+          <p class="text-gray-500">Departure: </p>
+          <span>{{ formatDate(props.travel.departure) }}</span>
+        </div>
+        <div class="inline-flex gap-x-2">
+          <p class="text-gray-500">Return </p>
+          <span>{{ formatDate(props.travel.departure) }}</span>
+        </div>
       </div>
     </div>
 

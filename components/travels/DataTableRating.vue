@@ -6,7 +6,7 @@ const empty = computed(() => Math.floor(total - props.rating))
 const filled = computed(() => Math.floor(props.rating))
 </script>
 <template>
-    <div class="inline-flex color-gray-600">
+    <div class="flex flex-col md:flex-row color-gray-600 w-3 invisible md:visible">
         <img src="/rating/filled.svg" v-for="n in filled" :key="n" />
         <img src="/rating/half.svg" v-if="hasDecimal" />
         <img src="/rating/empty.svg" v-for="n in empty" :key="`${n}filled`" />
