@@ -1,5 +1,5 @@
 export type Customer = {
-    age: string;
+    age: number;
     email: string;
     gender?: 'Male' | 'Female' | 'Non Binary' | 'Other' 
     id: string;

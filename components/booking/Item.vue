@@ -7,7 +7,7 @@ const props = defineProps<{ booking: Booking, travel: Travel }>();
 </script>
 
 <template>
-    <div class="border rounded-sm items-center p-4">
+    <div class="border rounded-sm items-center p-4 bg-gray-50">
         <h3 class="text-xl font-light text-scooter-600 px-2 md:px-8">Travel information</h3>
         <BookingTravelInfo :travel="props.travel" />
         <div class="border-t border-gray-300 my-4" />

@@ -1,5 +1,7 @@
 # Book Wander
 
+To view the demo, You can access through this [link](https://book-wander-eight.vercel.app/)
+
 ## REQUIRED TECH STACK
 
 - Vue 3 with composition API

@@ -3,6 +3,7 @@ import type { Travel } from '~/types/travel';
 import { columns } from '~/components/travels/columns';
 import debounce from 'debounce'
 import { newTravel } from '~/lib/travel';
+import type { Booking } from '~/types/booking';
 
 const API = '/api/travels'
 
@@ -89,12 +90,27 @@ const handleDeleteTravel = async ({ id }: Travel) => {
     const { data } = await getTravels()
     travels.value = data!.value || [];
 }
+
+const handleBookitTravel = async (travel: Travel) => {
+    try {
+        debugger;
+        const { id } = await $fetch<Booking>('/api/booking', {
+            method: 'POST',
+            body: { ...travel }
+        })
+
+        if (id) await navigateTo({ path: `/booking/new/${id}`, query: { step: 2 } })
+    } catch (error) {
+        createError(`${error}`)
+    }
+
+}
 </script>
 
 <template>
-    <div class="flex flex-col gap-8">
+    <div class="flex flex-col gap-8 ">
         <div
-            class="w-full items-center grid grid-cols-6 gap-4 bg-scooter-200  backdrop-blur-xl  bg-opacity-20 sticky top-[82px] z-10 p-2 ">
+            class="w-auto items-center grid grid-cols-6 gap-4 bg-scooter-200  backdrop-blur-xl  bg-opacity-20 sticky top-[82px] z-10 p-2 ">
             <Input class=" col-span-6 md:col-span-3 lg:col-span-3" placeholder="Search by Destiny or country..."
                 v-model="search" @input="handleSearch" />
             <TravelsFilterByContinent class="col-span-3 md:col-span-2 lg:col-span-2 w-full" :value="continent"
@@ -110,8 +126,8 @@ const handleDeleteTravel = async ({ id }: Travel) => {
 
         </div>
 
-        <TravelsDataTable :columns="dataTableColumns" :data="travelsByDate" @delete="handleDeleteTravel"
-            @edit="handleEditTravel" />
+        <TravelsDataTable :columns="dataTableColumns" :data="travelsByDate" @bookit="handleBookitTravel"
+            @delete="handleDeleteTravel" @edit="handleEditTravel" />
     </div>
 
 </template>

@@ -11,7 +11,7 @@ const props = defineProps<{
     data: TData[]
 }>()
 
-const emit = defineEmits(['edit', 'delete'])
+const emit = defineEmits(['edit', 'delete', 'bookit'])
 
 const table = useVueTable({
     get data() { return props.data },
@@ -41,8 +41,9 @@ const table = useVueTable({
 
                         </TableCell>
                         <TableCell>
-                            <TravelsDropdownMenu :id="`${row.id}-dropdown`" @delete="() => emit('delete', row.original)"
-                                @edit="() => emit('edit', row.original)">
+                            <TravelsDropdownMenu :id="`${row.id}-dropdown`"
+                                @bookit="() => emit('bookit', row.original)"
+                                @delete="() => emit('delete', row.original)" @edit="() => emit('edit', row.original)">
                             </TravelsDropdownMenu>
                         </TableCell>
 

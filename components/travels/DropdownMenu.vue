@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Travel } from '~/types/travel';
 
-const emit = defineEmits(['edit', 'delete'])
+const emit = defineEmits(['edit', 'delete', 'bookit'])
 const props = defineProps<{
     travel?: Travel
 
@@ -17,8 +17,16 @@ const open = ref<boolean>(false)
                     ...
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent align="end" class="w-[100px]">
+            <DropdownMenuContent align="end" class="w-[140px]">
                 <DropdownMenuGroup>
+                    <DropdownMenuItem>
+                        <div class="inline-flex w-full">
+                            <Button variant="ghost" @click="() => emit('bookit', props.travel?.id)">
+                                <img src="/bookit.svg" class="mr-2" alt="remove travel" />
+                                <p>Book it!</p>
+                            </Button>
+                        </div>
+                    </DropdownMenuItem>
                     <DropdownMenuItem>
                         <div class="inline-flex w-full">
                             <Button variant="ghost" @click="() => emit('edit', props.travel?.id)">

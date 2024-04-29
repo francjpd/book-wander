@@ -7,4 +7,5 @@ export type Booking = {
     notes: string
     paymentType: 'Credit' | 'Transfer' | 'Paypal' | 'Revolut';
     travel: Travel;
+    status: 'new' | 'created'
 }
