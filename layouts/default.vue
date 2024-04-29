@@ -1,7 +1,7 @@
 <template>
     <div>
         <Header />
-        <section class=" py-4 m-auto container">
+        <section class="px-2 md:px-8 py-4 m-auto container">
             <slot></slot>
         </section>
     </div>
