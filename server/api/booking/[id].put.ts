@@ -21,9 +21,6 @@ export default eventHandler(async (event) => {
             break;
         }
         case 'paymentAndNotes': {
-            console.log(booking[index])
-            console.log(BookingToModify)
-            console.log({ ...booking[index], paymentType: BookingToModify.paymentType, notes: BookingToModify.note, status: 'created' })
             booking[index] = { ...booking[index], paymentType: BookingToModify.paymentType, notes: BookingToModify.note, status: 'created' }
             break;
         }
