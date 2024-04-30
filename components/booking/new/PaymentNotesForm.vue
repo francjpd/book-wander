@@ -23,7 +23,6 @@ const emits = defineEmits<{
 
 
 const onSubmit = form.handleSubmit((values) => {
-    console.log('here')
     const booking: Booking = { ...values } as unknown as Booking;
     emits('submit', booking)
 })

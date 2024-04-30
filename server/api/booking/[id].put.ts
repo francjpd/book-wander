@@ -13,7 +13,7 @@ export default eventHandler(async (event) => {
             break;
         }
         case 'customer': {
-            booking[index] = { ...booking[index], customer, status: 'created' }
+            booking[index] = { ...booking[index], customer }
             break;
         }
         case 'booking': {
@@ -21,10 +21,13 @@ export default eventHandler(async (event) => {
             break;
         }
         case 'paymentAndNotes': {
-            booking[index] = { ...booking[index], paymentType: BookingToModify.paymentType, notes: BookingToModify.notes }
+            console.log(booking[index])
+            console.log(BookingToModify)
+            console.log({ ...booking[index], paymentType: BookingToModify.paymentType, notes: BookingToModify.note, status: 'created' })
+            booking[index] = { ...booking[index], paymentType: BookingToModify.paymentType, notes: BookingToModify.note, status: 'created' }
+            break;
         }
     }
-
     if (index === -1) return 'Destination not found'
     return 'Destination updated successfully'
 

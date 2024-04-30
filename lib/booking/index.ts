@@ -5,8 +5,13 @@ import type { Booking } from "~/types/booking";
 const API = '/api/booking/';
 
 export const refreshBooking = async (id?: string) => {
-    if (id) return await $fetch<Booking>(`${API}${id}`)
-    return await $fetch<Booking[]>(`${API}`)
+    try {
+        if (id) return await $fetch<Booking>(`${API}${id}`)
+        return await $fetch<Booking[]>(`${API}`)
+    } catch (error) {
+        createError({ statusCode: 404, statusMessage: 'Id not found' })
+    }
+
 }
 
 export const bookingSchema = toTypedSchema(z.object({

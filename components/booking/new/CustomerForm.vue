@@ -31,7 +31,7 @@ const onSubmit = form.handleSubmit((values) => {
 <template>
     <div>
         <div class="flex flex-col items-center w-full">
-            <form @submit="onSubmit" class="flex flex-col w-80  gap-2 text-xs">
+            <form @submit="onSubmit" class="flex flex-col w-80  gap-y-4 text-xs">
                 <FormField v-slot="{ componentField }" :value="internalCustomer.name" name="name">
                     <FormItem>
                         <FormLabel>Name</FormLabel>

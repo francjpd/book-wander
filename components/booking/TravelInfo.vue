@@ -11,7 +11,7 @@ const formatDate = (date: Date) => {
 
 <template>
   <div class="grid grid-cols-2 gap-4 w-full sm:justify-items-center md:justify-items-start px-2 md:px-8">
-    <div class="col-span-2 md:col-span-1 flex flex-col items-center h-36 w-56">
+    <div class="col-span-2 md:col-span-1 flex flex-col  h-36 w-56 items-start">
       <img :src="props.travel.picture" class="object-cover h-full w-12/12 rounded-md" alt="Destiny's picture">
     </div>
 

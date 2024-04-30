@@ -1,3 +1,4 @@
+import { newTravel } from "~/lib/travel";
 import { booking } from "~/server/stubs/bookings"
 import { Booking } from "~/types/booking";
 
@@ -15,7 +16,7 @@ export default eventHandler(async (event) => {
         status: 'new',
         notes: '',
         paymentType: 'Credit',
-        travel: { ...body },
+        travel: body ? { ...body } : newTravel(),
     }
 
     booking.push(newBooking)

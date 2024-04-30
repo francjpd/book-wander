@@ -23,7 +23,7 @@ const onSubmit = form.handleSubmit(({ notes }) => {
 
 <template>
     <div class=" grid grid-cols-12">
-        <p v-if="!isEditing" class="text-lightning-yellow-700 font-medium col-span-4">{{ model }}</p>
+        <p v-if="!isEditing" class="text-lightning-yellow-700 font-medium col-span-12 md-col-span-4">{{ model }}</p>
         <form v-else @submit="onSubmit"
             class="col-span-12 md-col-span-4 w-full flex flex-col md:flex-row gap-4 align-top items-center md:items-start ">
             <div class="w-full md:w-auto">
