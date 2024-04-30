@@ -41,6 +41,13 @@ export const columns: ColumnDef<Travel>[] = [
         },
     },
     {
+        accessorKey: 'description',
+        header: () => h('div', { class: 'sm:w-auto invisible md:visible' }, 'ABOUT'),
+        cell: ({ row }) => {
+            return h('div', { class: 'text-gray-800 invisible md:visible' }, `${row.getValue('description')}`)
+        },
+    },
+    {
         accessorKey: 'price',
         header: () => h('div', { class: 'sm:w-4 sm:w-auto' }, 'PRICE'),
         cell: ({ row }) => {

@@ -1,5 +1,7 @@
 <script setup lang="ts">
+import { refreshData } from '~/lib/booking/refreshData';
 import type { Booking } from '~/types/booking';
+
 
 const bookings = ref<Booking[]>([]);
 
@@ -9,10 +11,16 @@ bookings.value = data!.value || [];
 
 const createdBooking = computed(() => bookings.value.filter(booking => booking.status === 'created'))
 
+const handleSubmit = async (booking: Booking) => {
+    await $fetch(`/api/booking/${booking.id}`, { method: 'PUT', body: { type: 'booking', booking } })
+    await refreshData();
+}
+
 </script>
 <template>
     <div class="flex flex-col gap-10 w-auto sm:mx-8 lg:mx-36">
-        <BookingList :items="createdBooking" />
+        <BookingItem class="mb-12" v-for="booking in createdBooking" :key="booking.id" :booking="booking"
+            :travel="booking.travel" @submit="handleSubmit" />
     </div>
 
 </template>

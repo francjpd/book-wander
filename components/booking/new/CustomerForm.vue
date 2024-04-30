@@ -55,7 +55,7 @@ const onSubmit = form.handleSubmit((values) => {
                     <FormItem>
                         <FormLabel>Phone </FormLabel>
                         <FormControl>
-                            <Input type="text" placeholder="Phone" v-bind="componentField" />
+                            <Input type="text" placeholder="(+123)456-372166" v-bind="componentField" />
                         </FormControl>
                         <FormMessage />
                     </FormItem>

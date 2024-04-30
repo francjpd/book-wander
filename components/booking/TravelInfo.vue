@@ -16,22 +16,22 @@ const formatDate = (date: Date) => {
     </div>
 
     <div class="flex flex-col justify-items-center">
-      <p class="text-md font-bold text-fuzzy-wuzzy-brown-600">{{ props.travel.name }}</p>
+      <div class="flex flex-col md:flex-row gap-x-4">
+        <div class="inline-flex gap-x-2 items-center">
+          <p class="text-gray-500">Departure: </p>
+          <span class="font-bold text-lg text-gray-800">{{ formatDate(props.travel.departure) }}</span>
+        </div>
+        <div class="inline-flex gap-x-2 items-center">
+          <p class="text-gray-500">Return </p>
+          <span class="font-bold text-lg text-gray-800">{{ formatDate(props.travel.departure) }}</span>
+        </div>
+      </div>
       <div class="inline-flex gap-1">
-        <p class="text-gray-500">price:</p>
+        <p class="text-gray-500">Price:</p>
         <p class="">{{ props.travel.price }}</p>
         <img src="/eur.svg" alt="Eur">
       </div>
-      <div class="flex flex-col md:flex-row gap-x-4">
-        <div class="inline-flex gap-x-2">
-          <p class="text-gray-500">Departure: </p>
-          <span>{{ formatDate(props.travel.departure) }}</span>
-        </div>
-        <div class="inline-flex gap-x-2">
-          <p class="text-gray-500">Return </p>
-          <span>{{ formatDate(props.travel.departure) }}</span>
-        </div>
-      </div>
+
     </div>
 
 

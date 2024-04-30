@@ -11,7 +11,7 @@ const { id } = route.params
 const booking: Ref<Booking | null> = ref<Booking | null>(null)
 
 const refreshData = async () => {
-    const { data } = await useFetch<Booking>(`/api/booking/new/${id}`)
+    const { data } = await useFetch<Booking>(`/api/booking/${id}`)
     booking.value = data.value;
 }
 
@@ -20,14 +20,13 @@ const step = ref(route.query.step as string)
 watch(() => route.query.step, (value) => { if (value) step.value = value as string })
 
 const handleTravelForm = async (travel: Travel) => {
-    await $fetch(`/api/booking/new/${id}`, { method: 'PUT', body: { type: 'travel', travel } })
+    await $fetch(`/api/booking/${id}`, { method: 'PUT', body: { type: 'travel', travel } })
     await refreshData();
     navigateTo('?step=2')
 }
 
 const handleCustomerForm = async (customer: Customer) => {
-    //@ts-ignore
-    await $fetch(`/api/booking/new/${id}`, { method: 'PUT', body: { type: 'customer', customer } })
+    await $fetch(`/api/booking/${id}`, { method: 'PUT', body: { type: 'customer', customer } })
     await refreshData();
     navigateTo('?step=3')
 }

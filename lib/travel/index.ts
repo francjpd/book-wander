@@ -10,7 +10,7 @@ export const travelSchema = toTypedSchema(z.object({
     name: z.string(),
     picture: z.string(),
     price: z.number(),
-    rating: z.number().gt(0).lte(5, 'Rating has to be from 1 up to 5'),
+    rating: z.coerce.number().gt(0).lte(5, 'Rating has to be from 1 up to 5'),
     returnDate: z.string().regex(dateRegex, { message: 'Format has to be dd/MM/yyyy' }),
 }));
 
