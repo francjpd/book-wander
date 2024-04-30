@@ -41,7 +41,7 @@ const onSubmit = ((ev: Event) => {
                 </FormField>
 
 
-                <Button class="w-80 bg-scooter-400 hover:bg-scooter-600" type="submit">Next</Button>
+                <Button class="w-80 bg-scooter-400 hover:bg-scooter-600 text-white" type="submit">Next</Button>
             </form>
         </div>
     </div>

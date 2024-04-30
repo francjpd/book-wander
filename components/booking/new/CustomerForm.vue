@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { customerSchema } from '~/lib/customer'
 import { useForm } from 'vee-validate'
-import { format } from 'date-fns';
 import type { Customer } from '~/types/customer';
 
 const form = useForm({
@@ -69,7 +68,7 @@ const onSubmit = form.handleSubmit((values) => {
                         <FormMessage />
                     </FormItem>
                 </FormField>
-                <Button class="w-80 bg-scooter-400 hover:bg-scooter-600" type="submit">Next</Button>
+                <Button class="w-80 bg-scooter-400 hover:bg-scooter-600 text-white" type="submit">Next</Button>
             </form>
         </div>
     </div>

@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { refreshData } from '~/lib/booking/refreshData';
+
+import { refreshBooking } from '~/lib/booking';
 import type { Booking } from '~/types/booking';
 
 
-const bookings = ref<Booking[]>([]);
+const bookings: Ref<Booking[]> = ref<Booking[]>([]);
 
 
 const { data } = await useFetch<Booking[]>('/api/booking');
@@ -13,7 +14,7 @@ const createdBooking = computed(() => bookings.value.filter(booking => booking.s
 
 const handleSubmit = async (booking: Booking) => {
     await $fetch(`/api/booking/${booking.id}`, { method: 'PUT', body: { type: 'booking', booking } })
-    await refreshData();
+    bookings.value = await refreshBooking() as Booking[];
 }
 
 </script>

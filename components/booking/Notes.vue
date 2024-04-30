@@ -38,7 +38,7 @@ const onSubmit = form.handleSubmit(({ notes }) => {
             <Button type="submit" class=" bg-scooter-400 hover:bg-scooter-600 text-white w-44 ">Save
                 changes</Button>
         </form>
-        <Button variant="ghost" class="px-0 w-10 col-span-1 col-start-13 rounded-md" @click="toggleEdit">
+        <Button variant="ghost" class="px-0 w-10 col-span-1 col-start-13 rounded-md " @click="toggleEdit">
             <img src="/edit-filled.svg">
         </Button>
     </div>
