@@ -6,8 +6,6 @@ export const FORM_ITEM_INJECTION_KEY
 </script>
 
 <script lang="ts" setup>
-import { provide } from 'vue'
-import { useId } from 'radix-vue'
 import { cn } from '@/lib/utils'
 
 const props = defineProps<{

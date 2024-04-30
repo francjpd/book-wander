@@ -25,7 +25,7 @@ export const columns: ColumnDef<Travel>[] = [
             const travel = row.original
             return h(DataTableDestiny, {
                 travel,
-                class: 'w-24     md:w-auto'
+                class: 'w-28     md:w-auto'
             })
         },
     },
@@ -42,9 +42,9 @@ export const columns: ColumnDef<Travel>[] = [
     },
     {
         accessorKey: 'description',
-        header: () => h('div', { class: 'w-0 h-0 md:h-auto md:w-[28rem] invisible md:visible' }, 'ABOUT'),
+        header: () => h('div', { class: 'w-0 h-0 md:h-auto md:w-[20rem] invisible md:visible' }, 'ABOUT'),
         cell: ({ row }) => {
-            return h('div', { class: 'w-0 h-0 md:h-auto md:w-[28rem] text-gray-800 invisible md:visible' }, `${row.getValue('description')}`)
+            return h('div', { class: 'w-0 h-0 md:h-auto md:w-[20rem] text-gray-800 invisible md:visible' }, `${row.getValue('description')}`)
         },
     },
     {

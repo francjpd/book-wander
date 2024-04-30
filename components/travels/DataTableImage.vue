@@ -15,7 +15,7 @@ const monthFormat = formatWithOptions({ locale: enUS }, 'MMM')
 <template>
     <div>
         <div class="flex flex-col items-center md:h-36 md:w-56">
-            <img :src="travel.picture" class="object-cover h-full w-12/12 rounded-md" alt="Destiny's picture" />
+            <img :src="travel.picture" class="object-cover h-full w-12/12 rounded-md " alt="Destiny's picture" />
         </div>
     </div>
 </template>

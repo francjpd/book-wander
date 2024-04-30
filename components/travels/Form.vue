@@ -125,7 +125,7 @@ const formatDate = (date: Date) => {
                         </FormItem>
                     </FormField>
                 </div>
-                <Button class="w-80 bg-scooter-400 hover:bg-scooter-600" type="submit">Submit</Button>
+                <Button class="w-80" type="submit">Submit</Button>
             </form>
         </div>
     </div>

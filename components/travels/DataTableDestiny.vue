@@ -7,7 +7,7 @@ const props = defineProps<{
     travel: Travel
 }>()
 
-const dateToString = formatWithOptions({ locale: enUS }, 'd MMMM')
+const dateToString = formatWithOptions({ locale: enUS }, 'dd MMM')
 
 const totalDays = computed(() => differenceInDays(props.travel.departure, props.travel.returnDate))
 
