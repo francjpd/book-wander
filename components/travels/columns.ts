@@ -42,9 +42,9 @@ export const columns: ColumnDef<Travel>[] = [
     },
     {
         accessorKey: 'description',
-        header: () => h('div', { class: 'sm:w-auto invisible md:visible' }, 'ABOUT'),
+        header: () => h('div', { class: 'w-0 h-0 md:h-auto md:w-[28rem] invisible md:visible' }, 'ABOUT'),
         cell: ({ row }) => {
-            return h('div', { class: 'text-gray-800 invisible md:visible' }, `${row.getValue('description')}`)
+            return h('div', { class: 'w-0 h-0 md:h-auto md:w-[28rem] text-gray-800 invisible md:visible' }, `${row.getValue('description')}`)
         },
     },
     {

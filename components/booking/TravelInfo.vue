@@ -31,6 +31,7 @@ const formatDate = (date: Date) => {
         <p class="">{{ props.travel.price }}</p>
         <img src="/eur.svg" alt="Eur">
       </div>
+      <slot></slot>
 
     </div>
 
