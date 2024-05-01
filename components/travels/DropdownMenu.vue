@@ -13,7 +13,7 @@ const open = ref<boolean>(false)
     <div>
         <DropdownMenu v-model:open="open">
             <DropdownMenuTrigger as-child>
-                <Button variant="ghost" class="p4 rounded-md tracking-widest font-extrabold text-4x1">
+                <Button variant="ghost" class="p-2 rounded-md tracking-widest font-extrabold text-4x1">
                     ...
                 </Button>
             </DropdownMenuTrigger>

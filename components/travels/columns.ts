@@ -55,8 +55,8 @@ export const columns: ColumnDef<Travel>[] = [
     },
     {
         accessorKey: 'rating',
-        header: () => h('div', { class: 'invisible md:visible  w-4 sm:w-auto' }, 'RATING'),
-        cell: ({ row }) => h(DataTableRating, { class: 'w-4', rating: Number(row.getValue('rating')) })
+        header: () => h('div', { class: 'invisible md:visible  w-0 md:w-auto' }, 'RATING'),
+        cell: ({ row }) => h(DataTableRating, { class: 'w-0 md:w-auto', rating: Number(row.getValue('rating')) })
     }
 
 ]
