@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { refreshBooking } from '~/lib/booking'
 import type { Booking } from '~/types/booking'
 
 const bookings: Ref<Booking[]> = ref<Booking[]>([])

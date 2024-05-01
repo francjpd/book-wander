@@ -1,4 +1,4 @@
-import { newTravel } from '~/lib/travel'
+import { newTravel } from '~/utils/travel'
 import { booking } from '~/server/stubs/bookings'
 import type { Booking } from '~/types/booking'
 

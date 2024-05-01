@@ -2,7 +2,6 @@
 import { useForm } from 'vee-validate'
 import { format } from 'date-fns'
 import { type Travel } from '~/types/travel'
-import { travelSchema } from '~/lib/travel'
 
 const form = useForm({
   validationSchema: travelSchema,
@@ -196,3 +195,4 @@ const formatDate = (date: Date) => {
     </div>
   </div>
 </template>
+~/utils/travel

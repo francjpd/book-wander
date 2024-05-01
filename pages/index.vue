@@ -2,7 +2,6 @@
 import debounce from 'debounce'
 import type { Travel } from '~/types/travel'
 import { columns } from '~/components/travels/columns'
-import { newTravel } from '~/lib/travel'
 import type { Booking } from '~/types/booking'
 
 const API = '/api/travels'
@@ -147,3 +146,4 @@ const handleBookitTravel = async (travel: Travel) => {
     />
   </div>
 </template>
+~/utils/travel
