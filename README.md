@@ -4,10 +4,9 @@ Web application to simulate a Bookings system. To view the demo, You can access 
 
 ##  TECH STACK
 
-- Vue 3 with composition API
-- Nuxt3
+- Vue @ v3 / Composition API
+- Nuxt @ v3 
 - Typescript
-- Tailwind
+- Tailwind @ v3
 - Shadcn-vue
-- zod
-
+- zod @ v3
