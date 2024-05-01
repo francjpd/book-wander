@@ -63,7 +63,6 @@ catch (error) {
       </template>
       <template
         v-else-if="step === '2'"
-        class="col-span-6"
       >
         <BookingNewCustomerForm
           class="col-span-6"
