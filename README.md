@@ -10,3 +10,4 @@ Web application to simulate a Bookings system. To view the demo, You can access 
 - Tailwind @ v3
 - Shadcn-vue
 - zod @ v3
+- Default eslint config from Nuxt

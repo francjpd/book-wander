@@ -146,4 +146,3 @@ const handleBookitTravel = async (travel: Travel) => {
     />
   </div>
 </template>
-~/utils/travel

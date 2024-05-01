@@ -195,4 +195,3 @@ const formatDate = (date: Date) => {
     </div>
   </div>
 </template>
-~/utils/travel

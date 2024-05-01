@@ -26,7 +26,7 @@ const onSubmit = form.handleSubmit((values) => {
 </script>
 
 <template>
-  <div>
+  <div v-bind="$attrs">
     <div class="flex flex-col items-center w-full">
       <form
         class="flex flex-col w-80  gap-y-4 text-xs"
