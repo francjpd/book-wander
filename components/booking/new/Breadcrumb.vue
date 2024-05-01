@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { Slash } from 'lucide-vue-next'
-import type { Booking } from '~/types/booking'
 
-const props = defineProps<{ step?: string, booking?: Booking }>()
+const booking = useBookingState()
+const props = defineProps<{ step?: string }>()
 </script>
 
 <template>

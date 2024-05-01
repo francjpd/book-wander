@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate'
-import { customerSchema } from '~/lib/customer'
 import type { Customer } from '~/types/customer'
 
 const form = useForm({
   validationSchema: customerSchema,
 })
 
-const props = defineProps<{ customer: Customer }>()
+const booking = useBookingState()
 
-const internalCustomer: Ref<Customer> = ref<Customer>(props.customer)
+const internalCustomer: Ref<Customer> = ref<Customer>(booking.value.customer || newCustomer())
 
-watch(() => props.customer, (value) => {
+watch(() => booking.value.customer, (value) => {
   if (value) internalCustomer.value = value
 }, { immediate: true })
 

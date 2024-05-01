@@ -1,15 +1,14 @@
 <script setup lang="ts">
 import { type Travel } from '~/types/travel'
-import { newTravel } from '~/lib/travel'
 
-const props = defineProps<{ travel?: Travel }>()
 const form: Ref<HTMLFormElement | null> = ref(null)
+const booking = useBookingState()
 
 const { data } = await useFetch<Travel[]>('/api/travels/')
 
 const travels: Ref<Travel[]> = ref(data.value || [])
 
-const internalTravel: Ref<{ travel: Travel }> = ref<{ travel: Travel }>({ travel: props.travel as Travel || newTravel() })
+const internalTravel: Ref<{ travel: Travel }> = ref<{ travel: Travel }>({ travel: booking.value.travel as Travel || newTravel() })
 
 const emits = defineEmits<{
   (e: 'submit', payload: Travel): void

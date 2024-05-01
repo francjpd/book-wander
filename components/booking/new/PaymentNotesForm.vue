@@ -1,19 +1,17 @@
 <script setup lang="ts">
 import { useForm } from 'vee-validate'
 import SelectPaymentType from './SelectPaymentType.vue'
-import { bookingSchema } from '~/lib/booking'
-
 import type { Booking } from '~/types/booking'
 
 const form = useForm({
   validationSchema: bookingSchema,
 })
 
-const props = defineProps<{ booking: Booking }>()
+const booking = useBookingState()
 
-const internalBooking: Ref<Booking> = ref<Booking>(props.booking)
+const internalBooking: Ref<Booking> = ref<Booking>(booking.value)
 
-watch(() => props.booking, (value) => {
+watch(() => booking.value, (value) => {
   if (value) internalBooking.value = value
 }, { immediate: true })
 
