@@ -5,12 +5,15 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "generate": "nuxt generate",
     "generate:stubs": "node server/stubs/generate-travels.js",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/eslint": "^0.3.10",
     "@tanstack/vue-table": "^8.16.0",
     "@vee-validate/zod": "^4.12.6",
     "@vueuse/core": "^10.9.0",

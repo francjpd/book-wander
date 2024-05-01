@@ -12,10 +12,13 @@ export default defineNuxtConfig({
         {
           rel: 'icon',
           type: 'image/svg+xml',
-          href: '/logo.svg'
-        }
-      ]
-    }
+          href: '/logo.svg',
+        },
+      ],
+    },
   },
-  modules: ['@nuxtjs/tailwindcss', "shadcn-nuxt"]
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', '@nuxt/eslint'],
+  eslint: {
+    config: { stylistic: true, typescript: true },
+  },
 })

@@ -1,5 +1,5 @@
-import { Booking } from "~/types/booking";
-import { travels } from "./travels";
+import { travels } from './travels'
+import type { Booking } from '~/types/booking'
 
 export const booking: Booking[] = [{
   customer: {
@@ -8,13 +8,13 @@ export const booking: Booking[] = [{
     gender: 'Female',
     id: 'cust-002',
     name: 'Jane Smith',
-    phone: '987-654-3210'
+    phone: '987-654-3210',
   },
   id: 'book-002',
   status: 'created',
   notes: 'Requires special meal',
   paymentType: 'Paypal',
-  travel: travels[0]
+  travel: travels[0],
 },
 {
   customer: {
@@ -23,13 +23,13 @@ export const booking: Booking[] = [{
     gender: 'Non Binary',
     id: 'cust-003',
     name: 'Alex Johnson',
-    phone: '456-123-7890'
+    phone: '456-123-7890',
   },
   id: 'book-003',
   status: 'created',
   notes: 'Allergic to peanuts',
   paymentType: 'Transfer',
-  travel: travels[1]
+  travel: travels[1],
 },
 {
   customer: {
@@ -38,13 +38,13 @@ export const booking: Booking[] = [{
     gender: 'Male',
     id: 'cust-004',
     name: 'Michael Brown',
-    phone: '321-654-0987'
+    phone: '321-654-0987',
   },
   id: 'book-004',
   status: 'created',
   notes: 'Wheelchair accessible room required',
   paymentType: 'Revolut',
-  travel: travels[2]
+  travel: travels[2],
 },
 {
   customer: {
@@ -53,12 +53,12 @@ export const booking: Booking[] = [{
     gender: 'Other',
     id: 'cust-005',
     name: 'Lucas White',
-    phone: '159-753-4862'
+    phone: '159-753-4862',
   },
   id: 'book-005',
   status: 'created',
   notes: 'Interested in local cultural events',
   paymentType: 'Credit',
-  travel: travels[3]
-}
+  travel: travels[3],
+},
 ]

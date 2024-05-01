@@ -8,8 +8,8 @@ export { default as CommandList } from './CommandList.vue'
 export { default as CommandSeparator } from './CommandSeparator.vue'
 export { default as CommandShortcut } from './CommandShortcut.vue'
 export type SelectEvent<T> = CustomEvent<{
-    originalEvent: PointerEvent;
-    value?: T;
+  originalEvent: PointerEvent
+  value?: T
 }>
 
-export type AcceptableValue = string | number | boolean | Record<string, any>;
+export type AcceptableValue = string | number | boolean | Record<string, any>
