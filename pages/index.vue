@@ -100,7 +100,7 @@ const handleBookitTravel = async (travel: Travel) => {
 
         if (id) await navigateTo({ path: `/booking/new/${id}`, query: { step: 2 } })
     } catch (error) {
-        createError({  statusMessage: 'Something went wrong' })
+        createError({ statusMessage: 'Something went wrong' })
     }
 
 }
@@ -108,14 +108,12 @@ const handleBookitTravel = async (travel: Travel) => {
 
 <template>
     <div class="flex flex-col gap-8 ">
-        <div
-            class="w-auto items-center grid grid-cols-6 gap-4 bg-scooter-200  backdrop-blur-sm  bg-opacity-20 sticky top-[82px] z-10 p-2 ">
+        <Menubar>
             <Input class=" col-span-6 md:col-span-3 lg:col-span-3" placeholder="Search by Destiny or country..."
                 v-model="search" @input="handleSearch" />
             <TravelsFilterByContinent class="col-span-3 md:col-span-2 lg:col-span-2 w-full" :value="continent"
                 @select="handleSelect" />
-            <Button @click="handleAddTravel"
-                class="col-span-3 md:col-span-1" variant="secondary">
+            <Button @click="handleAddTravel" class="col-span-3 md:col-span-1" variant="secondary">
                 Add a Travel
             </Button>
             <Modal v-model="isOpen" title="Add a travel">
@@ -123,7 +121,7 @@ const handleBookitTravel = async (travel: Travel) => {
                 </TravelsForm>
             </Modal>
 
-        </div>
+        </Menubar>
 
         <TravelsDataTable :columns="dataTableColumns" :data="travelsByDate" @bookit="handleBookitTravel"
             @delete="handleDeleteTravel" @edit="handleEditTravel" />

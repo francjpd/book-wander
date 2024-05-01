@@ -14,7 +14,7 @@ const totalDays = computed(() => differenceInDays(props.travel.departure, props.
 </script>
 <template>
     <div>
-        <div class="flex flex-col">
+        <div class="flex flex-col text-xs  md:text-base pl-1">
             <p class="font-semibold">{{ props.travel.name.toUpperCase() }}</p>
             <div class="flex flex-col md:flex-row text-sm font-semibold">
                 <p class=""> {{ `from ${dateToString(props.travel.departure)}` }}</p>

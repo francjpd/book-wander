@@ -32,10 +32,10 @@ const createBook = async () => {
 </script>
 <template>
     <div class="flex flex-col gap-10 w-auto sm:mx-8 lg:mx-36">
-        <div
-            class="w-auto items-center grid grid-cols-6 gap-4 bg-scooter-200  backdrop-blur-sm  bg-opacity-20 sticky top-[82px] z-10 p-2 ">
-            <Button class="col-start-6" variant="secondary" @click="createBook">Book a travel</Button>
-        </div>
+        <Menubar>
+            <Button class="col-span-3 col-start-4 md:col-start-6 md:col-span-1 " variant="secondary"
+                @click="createBook">Book a travel</Button>
+        </Menubar>
         <BookingItem class="mb-12" v-for="booking in createdBooking" :key="booking.id" :booking="booking"
             :travel="booking.travel" @submit="handleSubmit" />
     </div>
