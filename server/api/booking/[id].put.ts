@@ -21,7 +21,7 @@ export default eventHandler(async (event) => {
       break
     }
     case 'paymentAndNotes': {
-      booking[index] = { ...booking[index], paymentType: BookingToModify.paymentType, notes: BookingToModify.note, status: 'created' }
+      booking[index] = { ...booking[index], paymentType: BookingToModify.paymentType, notes: BookingToModify.notes, status: 'created' }
       break
     }
   }

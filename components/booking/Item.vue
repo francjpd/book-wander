@@ -21,7 +21,7 @@ const emit = defineEmits(['submit'])
     </h3>
     <div class="px-2 md:px-8">
       <BookingNotes
-        :value="booking.notes"
+        :model-value="booking.notes"
         @submit="emit('submit', booking)"
       />
     </div>
