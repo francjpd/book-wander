@@ -42,7 +42,7 @@ export const useGetTravels = (continent: Ref<string>, search: Ref<string>) => as
   const api = `${API}${params.toString() ? `?${params}` : ''}`
 
   if (ssr) {
-    const { data } = await useFetch<Travel[]>(api);
+    const { data } = await useFetch<Travel[]>(api)
     return data.value || []
   }
   return await $fetch<Travel[]>(api) || []

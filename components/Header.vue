@@ -22,7 +22,7 @@ const toggleMenu = () => {
     <nav class="grid grid-cols-12 ">
       <Logo class="col-span-2" />
       <div
-        class="flex h-full w-full items-end justify-end col-span-2 col-start-11 flex-col md:flex-row md:items-center md:col-start-4 md:col-span-6 md:justify-center"
+        class="flex h-full w-full items-center justify-center col-span-2 col-start-11 flex-col md:flex-row md:items-center md:col-start-4 md:col-span-6 md:justify-center"
       >
         <template v-if="isMounted && !isDesktop">
           <button

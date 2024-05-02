@@ -9,7 +9,7 @@ export default eventHandler(async (event) => {
     id += randomNumber().toString()
   }
   const returnDateStr = body.returnDate.split('/')
-  const departureStr = body.departure.split('/');
+  const departureStr = body.departure.split('/')
   travels.push({
     ...body,
     departure: new Date(departureStr[2], departureStr[1] - 1, departureStr[0]),

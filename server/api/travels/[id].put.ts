@@ -9,9 +9,7 @@ export default eventHandler(async (event) => {
   const index = travels.findIndex(travel => travel.id === id)
 
   const returnDateStr = body.returnDate.split('/')
-  const departureDateStr = body.departure.split('/');
-
-
+  const departureDateStr = body.departure.split('/')
 
   if (index === -1) return 'Destination not found'
   travels[index] = {
