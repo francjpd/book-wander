@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import { enUS } from 'date-fns/locale'
-import { formatWithOptions } from 'date-fns/fp'
+import { format } from 'date-fns/fp'
 import type { Travel } from '~/types/travel'
 
 const props = defineProps<{
   travel: Travel
 }>()
 
-const dayFormat = formatWithOptions({ locale: enUS }, 'dd')
-const monthFormat = formatWithOptions({ locale: enUS }, 'MMM')
+const dayFormat = format('dd')
+const monthFormat = format('MMM')
 </script>
 
 <template>

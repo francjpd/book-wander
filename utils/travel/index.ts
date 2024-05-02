@@ -1,5 +1,6 @@
 import { toTypedSchema } from '@vee-validate/zod'
 import { z } from 'zod'
+import type { Travel } from '~/types/travel'
 
 const dateRegex = /^(\d{2})\/(\d{2})\/(\d{4})$/
 
@@ -24,3 +25,25 @@ export const newTravel = () => ({
   departure: new Date(),
   rating: 0,
 })
+
+const API = '/api/travels'
+
+export const useGetTravels = (continent: Ref<string>, search: Ref<string>) => async (ssr: boolean = false) => {
+  const params = new URLSearchParams()
+
+  if (continent.value.length) {
+    params.append('continent', continent.value)
+  }
+
+  if (search.value.length) {
+    params.append('search', search.value)
+  }
+
+  const api = `${API}${params.toString() ? `?${params}` : ''}`
+
+  if (ssr) {
+    const { data } = await useFetch<Travel[]>(api);
+    return data.value || []
+  }
+  return await $fetch<Travel[]>(api) || []
+}

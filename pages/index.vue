@@ -14,46 +14,29 @@ const search = ref<string>(route.query.search as string || '')
 const selected = ref()
 const isOpen = ref<boolean>(false)
 const isEditing = ref<boolean>(false)
+const getTravels = useGetTravels(continent, search)
 
-const getTravels = async () => {
-  const params = new URLSearchParams()
 
-  if (continent.value.length) {
-    params.append('continent', continent.value)
-  }
-
-  if (search.value.length) {
-    params.append('search', search.value)
-  }
-
-  const api = `${API}${params.toString() ? `?${params}` : ''}`
-
-  return await useFetch<Travel[]>(api)
-}
-
-const { data } = await getTravels()
-const travels = ref<Travel[]>(data!.value || [])
+const travels = ref<Travel[]>(await getTravels(true))
 
 const travelsByDate = computed(() => travels.value.length
   ? [...travels.value].sort((a, b) => {
-      if (a.departure > b.departure) return 1
-      if (a.departure < b.departure) return -1
-      return 0
-    })
+    if (a.departure > b.departure) return 1
+    if (a.departure < b.departure) return -1
+    return 0
+  })
   : [])
 
 const handleSelect = async (ev: string) => {
   continent.value = ev
   await router.push({ query: { ...router.currentRoute.value.query, continent: continent.value } })
-  const { data } = await getTravels()
-  travels.value = data!.value || []
+  travels.value = await getTravels();
 }
 
 const handleSearch = debounce(async (ev: InputEvent) => {
   ev.preventDefault()
   await router.push({ query: { ...router.currentRoute.value.query, search: search.value } })
-  const { data } = await getTravels()
-  travels.value = data!.value || []
+  travels.value = await getTravels();
 }, 200)
 
 const handleSubmit = async (values: Travel) => {
@@ -66,8 +49,7 @@ const handleSubmit = async (values: Travel) => {
   })
 
   isOpen.value = false
-  const { data } = await getTravels()
-  travels.value = data!.value || []
+  travels.value = await getTravels();
 }
 
 const handleAddTravel = () => {
@@ -86,8 +68,7 @@ const handleDeleteTravel = async ({ id }: Travel) => {
   await $fetch(`${API}/${id}`, {
     method: 'DELETE',
   })
-  const { data } = await getTravels()
-  travels.value = data!.value || []
+  travels.value = await getTravels();
 }
 
 const handleBookitTravel = async (travel: Travel) => {
@@ -108,41 +89,19 @@ const handleBookitTravel = async (travel: Travel) => {
 <template>
   <div class="flex flex-col gap-8 ">
     <Menubar>
-      <Input
-        v-model="search"
-        class=" col-span-6 md:col-span-3 lg:col-span-3"
-        placeholder="Search by Destiny or country..."
-        @input="handleSearch"
-      />
-      <TravelsFilterByContinent
-        class="col-span-3 md:col-span-2 lg:col-span-2 w-full"
-        :value="continent"
-        @select="handleSelect"
-      />
-      <Button
-        class="col-span-3 md:col-span-1"
-        variant="secondary"
-        @click="handleAddTravel"
-      >
+      <Input v-model="search" class=" col-span-6 md:col-span-3 lg:col-span-3"
+        placeholder="Search by Destiny or country..." @input="handleSearch" />
+      <TravelsFilterByContinent class="col-span-3 md:col-span-2 lg:col-span-2 w-full" :value="continent"
+        @select="handleSelect" />
+      <Button class="col-span-3 md:col-span-1" variant="secondary" @click="handleAddTravel">
         Add a Travel
       </Button>
-      <Modal
-        v-model="isOpen"
-        title="Add a travel"
-      >
-        <TravelsForm
-          :travel="selected"
-          @submit="handleSubmit"
-        />
+      <Modal v-model="isOpen" title="Add a travel">
+        <TravelsForm :travel="selected" @submit="handleSubmit" />
       </Modal>
     </Menubar>
 
-    <TravelsDataTable
-      :columns="dataTableColumns"
-      :data="travelsByDate"
-      @bookit="handleBookitTravel"
-      @delete="handleDeleteTravel"
-      @edit="handleEditTravel"
-    />
+    <TravelsDataTable :columns="dataTableColumns" :data="travelsByDate" @bookit="handleBookitTravel"
+      @delete="handleDeleteTravel" @edit="handleEditTravel" />
   </div>
 </template>
