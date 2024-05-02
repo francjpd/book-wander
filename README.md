@@ -11,3 +11,8 @@ Web application to simulate a Bookings system. To view the demo, You can access 
 - Shadcn-vue
 - zod @ v3
 - Default eslint config from Nuxt
+
+## Running the app locally
+Use the following commands
+1. `pnpm install`
+2. `pnpm dev`
