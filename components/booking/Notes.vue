@@ -35,7 +35,7 @@ const onSubmit = form.handleSubmit(({ notes }) => {
       @submit="onSubmit"
     >
       <div class="w-full md:w-auto">
-        <FormField
+          <FormField
           v-slot="{ componentField }"
           :value="internalNotes"
           name="notes"
@@ -59,8 +59,9 @@ const onSubmit = form.handleSubmit(({ notes }) => {
       </Button>
     </form>
     <Button
+      size="icon"
       variant="ghost"
-      class="px-0 w-10 col-span-1 col-start-13 rounded-md "
+      class="col-span-1 col-start-13 rounded-md "
       @click="toggleEdit"
     >
       <img src="/edit-filled.svg">
